@@ -56,7 +56,7 @@ class Board extends Component {
           } else if (result === 'draw') {
             this.setState({ board, endGame: true, message: "Awww it's a tie!! :(" });
           } else {
-            this.setState({ board, currentPlayer: this.togglePlayer() });
+            this.setState({ board, currentPlayer: this.switchPlayer() });
           }
         } else {
           this.setState({ message: 'Game over. Time to start a new game.' });
@@ -132,6 +132,9 @@ class Board extends Component {
         return 'Awww its a draw :(';    
       }
 
+      checkAll(board) {
+        return this.checkVertical(board) || this.checkDiagonalRight(board) || this.checkDiagonalLeft(board) || this.checkHorizontal(board) || this.checkDraw(board);
+      }
 
       componentWillMount() {
         this.initBoard();
@@ -141,7 +144,7 @@ class Board extends Component {
         return (
           <div>
             <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
-            
+            <p className="message">{this.state.message}</p>
             <table>
               <thead>
               </thead>
@@ -150,7 +153,7 @@ class Board extends Component {
               </tbody>
             </table>
             
-            <p className="message">{this.state.message}</p>
+           
           </div>
         );
       }

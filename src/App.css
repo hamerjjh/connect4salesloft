@@ -22,11 +22,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 table {
   margin: 0 auto;
   border-spacing: 0px 0px;
@@ -85,6 +80,12 @@ table {
 
 .yellow-sm {
   background-color: yellow;
+}
+
+.message {
+  text-align: center;
+  font-size: 17px;
+  background-color: lightcoral;
 }
 
 .white {
