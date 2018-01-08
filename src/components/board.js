@@ -29,6 +29,8 @@ class Board extends Component {
         this.setState({
           board,
           currentPlayer: this.state.player1,
+          endGame: false,
+          message: ''
         });
       }
       switchPlayer() {
