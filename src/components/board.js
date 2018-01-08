@@ -10,10 +10,12 @@ class Board extends Component {
           player2: 2,
           currentPlayer: null,
           board: [],
+          endGame: false,
+          message: ''
         };
         
         // Bind play function to App component
-        // this.play = this.play.bind(this);
+        this.play = this.play.bind(this);
       }
 
     initBoard() {
@@ -33,7 +35,7 @@ class Board extends Component {
         return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
       }
       play(c) {
-        if (!this.state.gameOver) {
+        if (!this.state.endGame) {
           let board = this.state.board;
           for (let r = 5; r >= 0; r--) {
             if (!board[r][c]) {
@@ -41,7 +43,22 @@ class Board extends Component {
               break;
             }
           }
+    
+          // Checking wins on board
+          let result = this.checkAll(board);
+          if (result === this.state.player1) {
+            this.setState({ board, endGame: true, message: 'Player 1 wins! Start New Game!' });
+          } else if (result === this.state.player2) {
+            this.setState({ board, endGame: true, message: 'Player 2 wins! Start New Game!' });
+          } else if (result === 'draw') {
+            this.setState({ board, endGame: true, message: "Awww it's a tie!! :(" });
+          } else {
+            this.setState({ board, currentPlayer: this.togglePlayer() });
+          }
+        } else {
+          this.setState({ message: 'Game over. Time to start a new game.' });
         }
+      }
       componentWillMount() {
         this.initBoard();
       }
