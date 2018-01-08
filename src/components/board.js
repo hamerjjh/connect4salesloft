@@ -14,6 +14,20 @@ class Board extends Component {
         // Bind play function to App component
         this.play = this.play.bind(this);
       }
+
+    initBoard() {
+        let board = [];
+        for (let r = 0; r < 6; r++) {
+          let row = [];
+          for (let c = 0; c < 7; c++) { row.push(null) }
+          board.push(row);
+        }
+        
+        this.setState({
+          board,
+          currentPlayer: this.state.player1,
+        });
+      }
     render() {
         return (
             <div>
