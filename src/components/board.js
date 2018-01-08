@@ -36,6 +36,7 @@ class Board extends Component {
       switchPlayer() {
         return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
       }
+
       play(c) {
         if (!this.state.endGame) {
           let board = this.state.board;
@@ -61,6 +62,22 @@ class Board extends Component {
           this.setState({ message: 'Game over. Time to start a new game.' });
         }
       }
+
+      checkVertical(board) {
+        for (let r = 3; r < 6; r++) {
+          for (let c = 0; c < 7; c++) {
+            if (board[r][c]) {
+              if (board[r][c] === board[r - 1][c] &&
+                  board[r][c] === board[r - 2][c] &&
+                  board[r][c] === board[r - 3][c]) {
+                return board[r][c];    
+              }
+            }
+          }
+        }
+      }
+
+
       componentWillMount() {
         this.initBoard();
       }
