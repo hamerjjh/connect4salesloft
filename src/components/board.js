@@ -28,6 +28,12 @@ class Board extends Component {
           currentPlayer: this.state.player1,
         });
       }
+      switchPlayer() {
+        return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
+      }
+      componentWillMount() {
+        this.initBoard();
+      }
     render() {
         return (
             <div>
